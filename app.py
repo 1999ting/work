@@ -173,7 +173,8 @@ def handle_message(event):
 
     if event.message.text == "大家最近都在討論什麼呢?":
         content_list = get_motor_ptt()  # 獲取前五筆資料的列表
-        reply_content = '\n'.join(content_list)  # 將列表內容合併為文字訊息
+        for content in content_list:
+            reply_content += content + '\n'  # 將列表內容合併為文字訊息
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_content))  # 使用TextSendMessage回覆訊息
